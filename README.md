@@ -157,6 +157,46 @@ El cual deberia mostrar una tabla como la siguiente
 
 <hr>
 
+Ademas vimos una manera diferente de crear los contenedores, y fue creandolos con un archivo .yml
+
+<img width="505" alt="Screenshot 2023-09-21 at 5 55 32 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/54d94c6c-624e-4e61-979c-e4a254df4ebb">
+
+En donde creamos 2 contenedores, uno llamado web, que usara como base a nusestro archivo Dockerfile para crearse, y otro llamado db, el cual usara imagenes de DockerHub de mongodb para construirse
+
+<hr>
+
+Y por ultimo subimos las imagenes a DockerHub, para ello primero creamos un respositorio en su pagina web https://hub.docker.com/ 
+
+Luego llamamos el siguiente comando para crear una referencia local al respositorio
+
+```
+docker tag [NombreLocal] [Nombre Repositorio]
+```
+
+Un ejemplo seria
+
+```
+docker tag lab5repo dano1214/lab5arepbono
+```
+
+Y luego solo debemos hacer el push, como ser haria en git, para ello primero iniciamos sesion con docker en la consola donde estemos con el siguiente comando
+
+```
+docker login
+```
+
+Y por ultimo hacemos el push
+
+```
+docker push [Nombre Imagen]:tag
+```
+
+Ejemplo
+
+```
+docker push dano1214/lab5arepbono:latest
+```
+
 ## Agradecimientos
 
 * A nuestro querido profesor de Arquitectura empresariales Daniel Benavides
