@@ -1,14 +1,20 @@
 package edu.eci;
 
-import edu.eci.webclient.filehandlers.FileHandler;
-
 import static spark.Spark.*;
 
+/**
+ * This is the main clas of the app, using Spark ot responds to REST requests
+ * @author DanielOchoa
+ */
 public class SparkWebServer {
 
+    /**
+     * Main method of the app, it initializes the endpoints of the app
+     * @param args (Not really necessary)
+     */
     public static void main(String... args){
         port(getPort());
-        get("hello", (req,res) -> "Hello Docker!");
+        get("/hello", (req,res) -> "Hello Docker!");
         get("/cos/:value", (req, res) -> Math.cos(Double.parseDouble(req.params("value"))));
         get("/sin/:value", (req, res) -> Math.sin(Double.parseDouble(req.params("value"))));
         get("/palindrome/:str", (req, res) -> isPalindrome(req.params("str")));
@@ -17,6 +23,9 @@ public class SparkWebServer {
         get("/", (req, res) -> getIndex());
     }
 
+    /*
+    Method that calculates the magnitude of a 2 dimension vector
+     */
     private static double magnitude(String x, String y){
         double xNum = Double.parseDouble(x);
         double yNum = Double.parseDouble(y);
@@ -26,11 +35,17 @@ public class SparkWebServer {
         return Math.sqrt(mag2);
     }
 
+    /*
+    Method that checks if a String is a palindrome
+     */
     private static boolean isPalindrome(String str){
         String reversed = new StringBuilder(str).reverse().toString();
         return str.equals(reversed);
     }
 
+    /*
+    Method that sets the port the app will be running on
+     */
     private static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
@@ -38,6 +53,9 @@ public class SparkWebServer {
         return 4567;
     }
 
+    /*
+    Method that builds the index of the web app
+     */
     private static String getIndex(){
         return "<!DOCTYPE html>\n" +
                 "                <html>\n" +
