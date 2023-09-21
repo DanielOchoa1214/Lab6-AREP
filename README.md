@@ -1,6 +1,6 @@
-# Taller 4 AREP - Daniel Sebastian Ochoa Urrego
+# Taller 5 AREP - Daniel Sebastian Ochoa Urrego
 
-En este taller cambiaremos la manera en la que ofrecemos funcionalidades REST, ahora lo haremos con el uso de anotaciones simulando el funcionamiento de SpringBoot 
+En este taller implementamos una aplicacion basica usando Spark Java para publicar servisios REST simples, ademas usamos Docker y DockerHub como metodo para contenerizar la aplicacion
 
 ## Iniciando
 
@@ -11,12 +11,14 @@ Estas instrucciones te ayudarán a tener una copia de este proyecto corriendo en
 * Git 
 * Java
 * Maven
+* Docker
 
 Si aún no tienes instaladas estas tecnologias, los siguientes tutoriales te pueden ayudar
 
 * Git: https://www.youtube.com/watch?v=4xqVv2lTo40
 * Java: https://www.youtube.com/watch?v=BG2OSaxWX4E
 * Maven: https://www.youtube.com/watch?v=1QfiyR_PWxU
+* Docker: https://www.youtube.com/watch?v=ZO4KWQfUBBc
 
 ### Instalando el proyecto
 
@@ -32,10 +34,9 @@ Luego muevete al directorio creado y desde ahi ejecuta este comando
 mvn exec:java
 ```
 
-Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferencia y entrar en http://localhost:35000 para ver la app corriendo, en ella encontraras una muy bonita página que cree con mucho esfuerzo donde puedes ver algún texto con una imagen de un anime genial y más abajo el nuevo y mejorado buscador de películas del taller anterior, el cual ahora puede buscar peliculas usando metodos GET o POST 
+Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferencia y entrar en http://localhost:4567 para ver la app corriendo, en ella encontraras una muy bonita página que cree con mucho esfuerzo donde puedes realizar diversas operaciones 
 
-<img width="1680" alt="SAPO" src="https://github.com/DanielOchoa1214/Lab2-AREP/assets/77862016/f4097a88-84cf-481c-8359-80e305df0c80">
-<img width="1680" alt="PERRO" src="https://github.com/DanielOchoa1214/Lab3_AREP/assets/77862016/4a0bf8d6-34da-45b3-bd53-3ec9a29c0fa6">
+![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/3fee9afa-760b-4109-aaea-3c8210324692)
 
 ## Corriendo los tests
 
