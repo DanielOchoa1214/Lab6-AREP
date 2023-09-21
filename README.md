@@ -115,8 +115,47 @@ CMD: Corre el comando especificado en la lista, cada entrada en la lista es una 
 Y luego con el siguiente comando creamos la imagen con las especificaciones del archivo Dockerfile
 
 ```
-docker build --tag dockersparkprimer .
+docker build --tag lab5arep .
 ```
+
+Y para verificar que la imagen se haya creado correctamente usamos el siguiente comando
+
+```
+docker images
+```
+
+El cual muestra una tabla como la siguiente (Los valores de "REPOSITORY" deberia ser solo "lab5arep" en tu PC)
+
+<img width="554" alt="Screenshot 2023-09-21 at 5 42 24 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/34d3952f-6511-4fd3-971a-79f97c9181d7">
+
+Y luego para crear un contenedor en base a la imagen usamos el siguiente comando
+
+```
+docker run -d -p [PUERTO]:6000 --name [NOMBRE] lab5arep
+```
+
+Donde reemplazamos con lo siguiente:
+
+[PUERTO] : El puerto fisico de la maquina donde queremos que corra
+[NOMBRE] : El nombre que le damos al contenedor
+
+Ademas el comando se puede explicar por partes de la siguiente manera: 
+
+-d Continua con la ejecucion del contenedor independientemente de la consola donde se corrio el comando 
+-p Especificamos el puerto donde correra el servidor, en el ejemplo estamos mapeando uno cualquiera de nuestra maquina con el puerto 6000 del contenedor
+--name Especificamos el nombre de nuestro contenedor
+
+Y para revisar que todo estubiera corriendo de manera adecuado corrimos el siguiente comando 
+
+```
+docker ps
+```
+
+El cual deberia mostrar una tabla como la siguiente
+
+<img width="1061" alt="Screenshot 2023-09-21 at 5 51 08 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/b17967e7-5d13-4ec7-a68e-9fab2a211c78">
+
+<hr>
 
 ## Agradecimientos
 
