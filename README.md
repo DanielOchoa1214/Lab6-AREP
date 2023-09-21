@@ -38,6 +38,12 @@ Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferen
 
 ![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/3fee9afa-760b-4109-aaea-3c8210324692)
 
+Ademas, el laboratorio esta subido en DockerHub, con Docker instalado, podras correr la aplicacion con el siguiente comando
+
+```
+docker run -d -p 37000:6000 --name lab5 dano1214/lab5arep  
+```
+
 ## Corriendo los tests
 
 ### Test unitarios
