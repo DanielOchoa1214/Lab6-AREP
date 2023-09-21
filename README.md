@@ -105,7 +105,7 @@ En terminos de diseño el proyecto es muy basico, simplemente tiene una clase qu
 
 En terminos de componentes, en este proyecto podria verse como si tubiera 2, el contenedor y el computador fisico, en donde el contenedor corre corre la aplicacion dentro del computador en un entorno independiente y se mapean puertos del PC fisico al del contenedor, graficamente podria verse de la siguiente manera
 
-
+![WhatsApp Image 2023-09-21 at 6 17 08 PM](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/fafeaaf1-f327-4a8d-9041-803a41f85074)
 
 ## Como crear imagenes y subirlas a DockerHub
 
