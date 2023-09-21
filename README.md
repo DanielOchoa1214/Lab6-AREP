@@ -41,7 +41,7 @@ Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferen
 Ademas, el laboratorio esta subido en DockerHub, con Docker instalado, podras correr la aplicacion con el siguiente comando
 
 ```
-docker run -d -p 37000:6000 --name lab5 dano1214/lab5arep  
+docker run -d -p 37000:6000 --name lab5 dano1214/lab5arepbono
 ```
 
 ## Corriendo los tests
