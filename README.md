@@ -99,6 +99,16 @@ GNU General Public License family
 
 ## Diseño
 
+En terminos de diseño el proyecto es muy basico, simplemente tiene una clase que mapea ciertos metodos a unos endpoints y en cada uno de ellos responde con diferentes funcionalidades
+
+## Arquitectura
+
+En terminos de componentes, en este proyecto podria verse como si tubiera 2, el contenedor y el computador fisico, en donde el contenedor corre corre la aplicacion dentro del computador en un entorno independiente y se mapean puertos del PC fisico al del contenedor, graficamente podria verse de la siguiente manera
+
+
+
+## Como crear imagenes y subirlas a DockerHub
+
 En este laboratorio diseñamos una aplicacion muy simple en Java la cual con ayuda de la libreria Spark pubilcamos metodos a traves de peticiones REST. Hasta ese punto no hay nada nuevo respecto a lo hecho anteriormente, lo que cambia en este laboratorio, es que aprenderendimos a usar Docker para correr nuestra aplicacion desde un contenedor ademas como publicarlo en DockerHub para poder tener el contendor desde cualquier cliente con Docker instalado. 
 
 Para ello lo primero que hicimos despues de terminar la aplicacion fue crear el siguiente archivo en donde definiriamos la estructura y propiedades de nuestro contenedor
@@ -196,6 +206,12 @@ Ejemplo
 ```
 docker push dano1214/lab5arepbono:latest
 ```
+
+Y si todo salio bien puedes en docker hub tu repositorio deberia verse algo asi
+
+<img width="1277" alt="Screenshot 2023-09-21 at 6 07 07 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/ba0523dd-0019-4d9c-94f7-3d3f32842ddd">
+
+Ya llegando aca, solo usamos el comando presentado en la seccion de instalando para bajar la imagen del repositorio y correrla en nuestro computador
 
 ## Agradecimientos
 
