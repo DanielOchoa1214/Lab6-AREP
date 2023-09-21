@@ -46,33 +46,23 @@ docker run -d -p 37000:6000 --name lab5 dano1214/lab5arep
 
 ## Corriendo los tests
 
-### Test unitarios
-
-Para correr los tests unitarios creados debes entrar al directorio del proyecto (Al clonarlo probablemente sea llamado "Lab3_AREP") y correr el siguiente comando 
-
-```
-mvn test
-```
-
-Y si tanto tu como yo hicimos todo bien, los test deberian correr y ser exitosos. 
-
-Ahora, el proyecto tiene 2 tests, el primero es una prueba simple donde vemos que la API fachada si sea capaz de traer información correcta dado el titulo de una película, y el segundo prueba que nuestra app sea resistente a pedidos concurrentes chequeando que el cache se mantenga consistente a travez de estos pedidos.
-
 ### Test de integración
 
-Para probar que el desarrollo de nuestro MiniSpring estuviera correcto se creo la siguiente clase donde hacemos la creación de los servicios REST 
+Para probar que el desarrollo de la aplicacion fura correcto se probo cada funcionalidad en ella corriendo, primero probamos el coseno
 
-<img width="546" alt="Screenshot 2023-09-08 at 12 42 54 PM" src="https://github.com/DanielOchoa1214/Lab4-AREP/assets/77862016/04a4799a-dcbd-4229-854a-ed40b65d8f29">
+![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/9f7ab7b7-00d1-4901-affc-ba5436df622e)
 
-En ella, similar a Spring, creamos con la función getMovie() un método que responderá a peticiones GET hechas a través de la ruta /hello, y de igual manera podremos responder peticiones POST por el mismo endpoint con la función postMovie()
+Luego el seno
 
-Y para probar su correcto funcionamiento a la página FrontEnd agregamos un nuevo formulario donde mandáremos la información de la película a través del body de un POST
+![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/8dbf0aa7-66df-4bc3-9595-8c46748277e6)
 
-<img width="1296" alt="Screenshot 2023-09-01 at 4 43 02 PM" src="https://github.com/DanielOchoa1214/Lab3_AREP/assets/77862016/f92fcc52-eea0-4091-8e3a-2cbe7c7d171b">
+El palindrome
 
-Y si queremos verificar más podremos revisar en el log de la aplicación que se hayan enviado los request con el verbo apropiado
+![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/0fcac65e-b20d-4446-bfef-eef75369b500)
 
-<img width="305" alt="Screenshot 2023-09-01 at 4 44 20 PM" src="https://github.com/DanielOchoa1214/Lab3_AREP/assets/77862016/8d5500f9-def7-42b9-8d8c-e5fa12d8e986">
+Y el calcular la magnitud de un vector de 2 dimensiones
+
+![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/7d49d562-650a-4b7c-b534-5da8bcddb00a)
 
 ## Documentacion
 
