@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MongoContainerClient {
-    private final String connUri = "localhost:27017";
+    private final String connUri = "10.5.0.8:27017";
     private MongoClient client;
     private MongoDatabase db;
     private MongoCollection<Document> collection;

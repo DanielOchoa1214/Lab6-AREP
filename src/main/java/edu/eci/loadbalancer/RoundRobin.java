@@ -12,14 +12,89 @@ import static spark.Spark.*;
 
 public class RoundRobin {
 
-    private static final String[] servers = new String[]{"localhost", "localhost", "localhost"};
+    private static final String[] servers = new String[]{"10.5.0.5", "10.5.0.6", "10.5.0.7"};
     private static int currentServer = 0;
     private static final String USER_AGENT = "Mozilla/5.0";
     public static void main(String[] args) {
         port(getPort());
-        get("/index.html", (req, res) -> Files.readAllBytes(Path.of("src/main/resources/public/index.html")));
-        get("/", (req, res) -> Files.readAllBytes(Path.of("src/main/resources/public/index.html")));
+        get("/index.html", (req, res) -> getIndex());
+        get("/", (req, res) -> getIndex());
         get("/log/:log", (req, res) -> saveLog(req.params("log")));
+    }
+
+    private static String getIndex(){
+        return """
+                 <!DOCTYPE html>
+                 <html>
+                                
+                 <head>
+                     <title>Taller 6 AREP</title>
+                     <meta charset="UTF-8">
+                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                     <style>
+                         table, th, td {
+                             border: 1px solid black;
+                             border-collapse: collapse;
+                         }
+                     </style>
+                 </head>
+                                
+                 <body>
+                     <h1>Profe pongame 5</h1>
+                     <h2>Ingresa un log, y te traigo los ultimos 10 :D </h2>
+                     <form>
+                         <label for="log">Ingresa el log: </label><br>
+                         <input type="text" id="log" name="name" value="Holi">
+                         <br><br>
+                         <input type="button" value="Submit" onclick="loadGetLogs()">
+                     </form>
+                     <hr>
+                     <div id="getreslog" style="display: none;">
+                         <table style="border: 1px solid black;">
+                             <thead>
+                                 <tr>
+                                     <th>Log</th>
+                                     <th>Created</th>
+                                 </tr>
+                             </thead>
+                             <tbody id="table"></tbody>
+                         </table>
+                     </div>
+                     <script>
+                         let loadGetLogs = () => {
+                             let nameVar = document.getElementById("log").value;
+                             fetch("/log/" + nameVar).then(res => res.json())
+                                 .then((res) => {
+                                     let searchDiv = document.getElementById("table");
+                                     buildLogTable(searchDiv, res);
+                                     document.getElementById("getreslog").setAttribute("style", "display: block");
+                                 })
+                         };
+                                
+                         let buildLogTable = (container, logs) => {
+                             container.innerHTML = ""
+                             for (let i = 0; i < logs.length; i++) {
+                                 let row = document.createElement("tr");
+                                 let logData = document.createElement("td");
+                                 logData.innerText = logs[i]["log"];
+                                 row.appendChild(logData);
+                                 let createdData = document.createElement("td");
+                                 createdData.innerText = logs[i]["created"];
+                                 row.appendChild(createdData);
+                                 container.appendChild(row);
+                             }
+                         };
+                                
+                         let createHTMLElement = (tag, content, container) => {
+                             let element = document.createElement(tag);
+                             element.innerText = content;
+                             container.appendChild(element);
+                         };
+                     </script>
+                 </body>
+                                
+                 </html>
+                """;
     }
 
     private static String saveLog(String log) throws IOException {
@@ -72,7 +147,8 @@ public class RoundRobin {
     }
 
     private static String createUrl(String log){
-        return "http://" + servers[getNextRoundRobin()] + ":35000/log/" + log;
+        System.out.println("http://" + servers[getNextRoundRobin()] + ":6000/log/" + log);
+        return "http://" + servers[getNextRoundRobin()] + ":6000/log/" + log;
     }
 
     private static int getPort() {
