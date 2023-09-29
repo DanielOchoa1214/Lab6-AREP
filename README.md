@@ -1,6 +1,6 @@
-# Taller 5 AREP - Daniel Sebastian Ochoa Urrego
+# Taller 6 AREP - Daniel Sebastian Ochoa Urrego
 
-En este taller implementamos una aplicación básica usando Spark Java para publicar servicios REST simples, además usamos Docker y DockerHub como método para contenerizar la aplicación
+En este taller implementaremos un servicio de logs con una arquitectura mas compleja que antes usando Docker y una instancia EC2 de AWS
 
 ## Iniciando
 
