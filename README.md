@@ -100,14 +100,34 @@ MongoDB: Contenedor con la base de datos de mongo
 
 ## Como crear la imagenes y desplegar el proyecto
 
+El proceso para crear las imagenes y el despliegue es el mismo, solo que se debe hacer en la instancia de la maquina virtual ya creada en el taller
+
+### Creacion de las imagenes
+
+Para automatizar la creacion de las imagenes y los contenedores se creo el archivo docker-compose.yml con l¡a siguiente informacion
+
+<img width="1000" alt="Screenshot 2023-09-29 at 7 33 25 PM" src="https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/3e02ae27-0d47-492f-8a62-f8470d7ed155">
+<img width="1010" alt="Screenshot 2023-09-29 at 7 33 39 PM" src="https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/b700b7f4-ed1b-44a2-8ec4-f143f3fcd3e8">
+
+En este archivo especificamos como se crean las imagenes, en el hay 2 metodos de creacion, especificando la imagen con un Dockerfile y otro, trayendo la imagen de docker hub, aqui no se ahondara mucho ya que se explico en detalle en el taller anterior.
+
+Lo nuevo que aparece en el archivo es la seccion de "network" en esta estamos especificando la red virtual que crearemos donde estaran los contenedores, en este especificamos el tipo de red (atributo driver), el id de la red y el gateway de esta. La especificacion de la red se hace para que los contenedores puedan tener una IP estatica y sea facilmente desplegable en cualquier PC.
+
+Ya con el archivo lo unico que debemos hacer es correr el siguiente comando
+
+```
+docker-compose up -d
+```
+
+Y si entras en la URL http://localhost:8080 encontraras (ojala) el app corriendo
+
+### Despliegue
+
+Para crear una instancia EC2 en AWS puedes solo seguir el siguiente [tutorial](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html). Ya cuando la hayas creado y te hayas conectado, simplemente clona el proyecto en la instancia y sigue el tutorial de la seccion anterior para desplegar. Puede que haga falta instalar git, docker y el plugin de compose en la instancia para poder correr el lab, pero para ello puedes seguir los tutoriales del inicio del README.
 
 ## Video
 
-
-
 https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/c95c1af3-9679-45ff-a306-4f50bff2e8b1
-
-
 
 ## Agradecimientos
 
