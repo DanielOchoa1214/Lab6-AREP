@@ -25,44 +25,26 @@ Si aún no tienes instaladas estas tecnologias, los siguientes tutoriales te pue
 Para hacer una copia local del proyecto, debes abrir tu terminal, dirigirte al directorio donde quieras que este el proyecto y usar el siguiente comando
 
 ```
-git clone https://github.com/DanielOchoa1214/Lab4-AREP.git
+https://github.com/DanielOchoa1214/Lab6-AREP.git
 ```
 
 Luego muevete al directorio creado y desde ahi ejecuta este comando
 
 ```
-mvn exec:java
+docker-compose up -d
 ```
 
-Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferencia y entrar en http://localhost:4567 para ver la app corriendo, en ella encontraras una muy bonita página que cree con mucho esfuerzo donde puedes realizar diversas operaciones 
+Ya que la aplicación haya iniciado, puedes dirigirte a tu navegador de preferencia y entrar en http://localhost:8080 para ver la app corriendo, en ella encontraras una muy bonita página que cree con mucho esfuerzo donde puedes enviar los logs
 
-![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/3fee9afa-760b-4109-aaea-3c8210324692)
-
-Además, el laboratorio está subido en DockerHub, con Docker instalado, podrás correr la aplicación con el siguiente comando
-
-```
-docker run -d -p 37000:6000 --name lab5 dano1214/lab5arepbono
-```
+<img width="451" alt="Screenshot 2023-09-29 at 7 06 37 PM" src="https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/7c4f6db6-96d9-483e-9cb9-106b58f8e2b0">
 
 ## Corriendo los tests
 
 ### Test de integración
 
-Para probar que el desarrollo de la aplicación fuera correcto sé probo cada funcionalidad en ella corriendo, primero probamos el coseno
+Para probar que el desarrollo de la aplicación fuera correcto sé probo cada funcionalidad en ella corriendo, para ello enviamos un log y verificamos que saliera junto con los ultimos creados
 
-![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/9f7ab7b7-00d1-4901-affc-ba5436df622e)
-
-Luego el seno
-
-![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/8dbf0aa7-66df-4bc3-9595-8c46748277e6)
-
-El palindrome
-
-![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/0fcac65e-b20d-4446-bfef-eef75369b500)
-
-Y el calcular la magnitud de un vector de 2 dimensiones
-
-![image](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/7d49d562-650a-4b7c-b534-5da8bcddb00a)
+<img width="452" alt="Screenshot 2023-09-29 at 7 05 03 PM" src="https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/9a3911db-bb6c-4e8b-8eac-e3476815547d">
 
 ## Documentacion
 
@@ -99,118 +81,33 @@ GNU General Public License family
 
 ## Diseño
 
-En términos de diseño el proyecto es muy básico, simplemente tiene una clase que mapea ciertos métodos a unos endpoints y en cada uno de ellos responde con diferentes funcionalidades
+Para simular la arquitectura especificada en el taller dentro de un mismo proyecto se separaron los componentes en paquetes diferentes, uno para los LogService y otro para el balanceador RoundRobin. Ademas, se tienen los archivos Dockerfile y docker-compose que especidica como se construiran los contenedores y que haran cada uno de ellos.
 
 ## Arquitectura
 
-En términos de componentes, en este proyecto podría verse como si tuviera 2, el contenedor y el computador físico, en donde el contenedor corre la aplicación dentro del computador en un entorno independiente y se mapean puertos del PC físico al del contenedor, gráficamente podría verse de la siguiente manera
+La arquitectura de este taller es presentada con el siguiente diagrama 
 
-![WhatsApp Image 2023-09-21 at 6 17 08 PM](https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/fafeaaf1-f327-4a8d-9041-803a41f85074)
+<img width="908" alt="Screenshot 2023-09-29 at 7 11 56 PM" src="https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/010a84b3-0056-45d7-972d-21b2aceffbea">
 
-## Como crear imagenes y subirlas a DockerHub
+En donde se especifican los siguientes componentes: 
 
-En este laboratorio diseñamos una aplicación muy simple en Java la cual con ayuda de la librería Spark publicamos métodos a través de peticiones REST. Hasta ese punto no hay nada nuevo respecto a lo hecho anteriormente, lo que cambia en este laboratorio, es que aprenderemos a usar Docker para correr nuestra aplicación desde un contenedor además como publicarlo en DockerHub para poder tener el contendor desde cualquier cliente con Docker instalado. 
+Security Group: Grupo de seguridad de la instancia en AWS que lproteje los puertos de la maquina (firewal de nivel 1)
+AWS-EC2: Instancia basica de una maquina virtual en la nube de Amazon
+Docker Engine: Motor de los coontenedores instalado en la instancia
+APP-LB-RoundRobin: Balanceador de cargas que implementa un algoritmo estatico de RoundRobin donde se rotan los servidorespor cada peticion
+LogService: Servidor que almacenara en la base de datos el log, y devolvera los ultimos 10
+MongoDB: Contenedor con la base de datos de mongo
 
-Para ello lo primero que hicimos después de terminar la aplicación fue crear el siguiente archivo en donde definiríamos la estructura y propiedades de nuestro contenedor
-<img width="609" alt="Screenshot 2023-09-21 at 5 35 14 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/adbac42f-4af6-4688-9a68-281b60529709">
+## Como crear la imagenes y desplegar el proyecto
 
-En donde cada línea corremos los siguientes comandos:
 
-FROM: Toma de base la imagen openjdk:17 en nuestro contenedor, esto para no tener que instalar Java desde 0
-WORKDIR: Asigna el path base del disco duro virtual de nuestro contenedor 
-COPY: Copia los contenidos de la primera carpeta de nuestro computador al directorio de la imagen del contenedor
-CMD: Corre el comando especificado en la lista, cada entrada en la lista es una porción del comando separado por espacion
+## Video
 
-Y luego con el siguiente comando creamos la imagen con las especificaciones del archivo Dockerfile
 
-```
-docker build --tag lab5arep .
-```
 
-Y para verificar que la imagen se haya creado correctamente usamos el siguiente comando
+https://github.com/DanielOchoa1214/Lab6-AREP/assets/77862016/c95c1af3-9679-45ff-a306-4f50bff2e8b1
 
-```
-docker images
-```
 
-El cual muestra una tabla como la siguiente (Los valores de "REPOSITORY" debería ser solo "lab5arep" en tu PC)
-
-<img width="554" alt="Screenshot 2023-09-21 at 5 42 24 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/34d3952f-6511-4fd3-971a-79f97c9181d7">
-
-Y luego para crear un contenedor con base en la imagen usamos el siguiente comando
-
-```
-docker run -d -p [PUERTO]:6000 --name [NOMBRE] lab5arep
-```
-
-Donde reemplazamos con lo siguiente:
-
-[PUERTO] : El puerto físico de la máquina donde queremos que corra
-[NOMBRE] : El nombre que le damos al contenedor
-
-Además el comando se puede explicar por partes de la siguiente manera: 
-
--d Continua con la ejecución del contenedor independientemente de la consola donde se corrió el comando 
--p Especificamos el puerto donde correrá el servidor, en el ejemplo estamos mapeando uno cualquiera de nuestra maquina con el puerto 6000 del contenedor
---name Especificamos el nombre de nuestro contenedor
-
-Y para revisar que todo estuviera corriendo de manera adecuada corrimos el siguiente comando
-
-```
-docker ps
-```
-
-El cual debería mostrar una tabla como la siguiente
-
-<img width="1061" alt="Screenshot 2023-09-21 at 5 51 08 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/b17967e7-5d13-4ec7-a68e-9fab2a211c78">
-
-<hr>
-
-Además vimos una manera diferente de crear los contenedores, y fue creándolos con un archivo .yml
-
-<img width="505" alt="Screenshot 2023-09-21 at 5 55 32 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/54d94c6c-624e-4e61-979c-e4a254df4ebb">
-
-En donde creamos 2 contenedores, uno llamado web, que usara como base a nuestro archivo Dockerfile para crearse, y otro llamado db, el cual usara imágenes de DockerHub de mongodb para construirse
-
-<hr>
-
-Y por último subimos las imágenes a DockerHub, para ello primero creamos un repositorio en su página web https://hub.docker.com/ 
-
-Luego llamamos el siguiente comando para crear una referencia local al repositorio
-
-```
-docker tag [NombreLocal] [Nombre Repositorio]
-```
-
-Un ejemplo sería
-
-```
-docker tag lab5repo dano1214/lab5arepbono
-```
-
-Y luego solo debemos hacer el push, como ser haría en git, para ello primero iniciamos sesión con docker en la consola donde estemos con el siguiente comando
-
-```
-docker login
-```
-
-Y por último hacemos el push
-
-```
-docker push [Nombre Imagen]:tag
-```
-
-Ejemplo
-
-```
-docker push dano1214/lab5arepbono:latest
-```
-
-Y si todo salió bien puedes en DockerHub tu repositorio debería verse algo así
-
-<img width="1277" alt="Screenshot 2023-09-21 at 6 07 07 PM" src="https://github.com/DanielOchoa1214/Lab5-AREP/assets/77862016/ba0523dd-0019-4d9c-94f7-3d3f32842ddd">
-
-Ya llegando acá, solo usamos el comando presentado en la sección de instalando para bajar la imagen del repositorio y correrla en nuestro computador
 
 ## Agradecimientos
 
