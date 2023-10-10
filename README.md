@@ -25,7 +25,7 @@ Si aún no tienes instaladas estas tecnologias, los siguientes tutoriales te pue
 Para hacer una copia local del proyecto, debes abrir tu terminal, dirigirte al directorio donde quieras que este el proyecto y usar el siguiente comando
 
 ```
-https://github.com/DanielOchoa1214/Lab6-AREP.git
+git clone https://github.com/DanielOchoa1214/Lab6-AREP.git
 ```
 
 Luego muevete al directorio creado y desde ahi ejecuta este comando
